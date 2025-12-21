@@ -12,8 +12,7 @@
 
 ## Contact
 
-- **Email:** chris.osw.lopez@berkeley.edu
-- **GitHub:** [github.com/chrispycodes35](https://github.com/chrispycodes35)
+- **Email:** cykhaldi@berkeley.edu
 - **Location:** Berkeley, CA 94704
 
 ## Development
