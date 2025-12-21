@@ -1,0 +1,161 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Monaco:wght@400&display=swap');
+
+::selection {
+  background-color: #47a3f3;
+}
+
+html {
+  min-width: 360px;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 16.67px;
+}
+
+body {
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 16.67px;
+  line-height: 1.6;
+}
+
+.prose .anchor {
+  @apply absolute invisible no-underline;
+
+  margin-left: -1em;
+  padding-right: 0.5em;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.anchor:hover {
+  @apply visible;
+}
+
+.prose a {
+  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+}
+
+.prose .anchor:after {
+  @apply text-neutral-300 dark:text-neutral-700;
+  content: '#';
+}
+
+.prose *:hover > .anchor {
+  @apply visible;
+}
+
+.prose pre {
+  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
+}
+
+.prose code {
+  @apply px-1 py-0.5 rounded-lg;
+}
+
+.prose pre code {
+  @apply p-0;
+  border: initial;
+  line-height: 1.5;
+}
+
+.prose code span {
+  @apply font-medium;
+}
+
+.prose img {
+  /* Don't apply styles to next/image */
+  @apply m-0;
+}
+
+.prose p {
+  @apply my-4 text-gray-300; /* body text */
+}
+
+.prose h1 {
+  @apply text-4xl font-medium tracking-tight mt-6 mb-2 text-white;
+}
+
+.prose h2 {
+  @apply text-2xl font-medium tracking-tight mt-6 mb-2 text-[#64f4ac];
+}
+
+.prose h3 {
+  @apply text-xl font-medium tracking-tight mt-6 mb-2 text-[#64f4ac];
+}
+
+.prose h4 {
+  @apply text-lg font-medium tracking-tight mt-6 mb-2 text-gray-300;
+}
+
+.prose strong {
+  @apply font-medium;
+}
+
+.prose ul {
+  @apply list-disc pl-6;
+}
+
+.prose ol {
+  @apply list-decimal pl-6;
+}
+
+.prose > :first-child {
+  /* Override removing top margin, causing layout shift */
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Remove Safari input shadow on mobile */
+input[type='text'],
+input[type='email'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.title {
+  text-wrap: balance;
+}
+
+/* Soft translucent page background so particles remain visible behind content. */
+html, body {
+  background-color: rgba(0,0,0,0.85);
+  color: #fff;
+}
+
+/* Neutralize common light Tailwind background utility classes so they don't produce
+   white panels on a site intended to always be black. These use !important to
+   override compiled utility classes. If you prefer specific colored cards, adjust
+   these selectively. */
+.bg-white,
+.bg-neutral-50,
+.bg-blue-50,
+.bg-green-50,
+.bg-purple-50,
+.bg-pink-50,
+.bg-gray-100 {
+  background-color: transparent;
+}
+
+/* Semi-opaque card background (slightly see-through to reveal particles). */
+.card-bg {
+  background-color: rgba(10, 10, 10, 0.6); /* dark gray with 60% opacity */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
