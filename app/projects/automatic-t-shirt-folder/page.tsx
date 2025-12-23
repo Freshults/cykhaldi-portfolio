@@ -567,55 +567,108 @@ export default function Page() {
         {/* Image Gallery */}
         <div className="bg-gray-800/20 border border-gray-600/30 rounded-xl p-8">
           <h3 className="text-xl font-semibold text-white mb-6">Image Gallery</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <img 
-                src="/automatic-t-shirt-folder/CAD 1.png" 
-                alt="CAD Model 1" 
-                className="w-full rounded-lg"
-              />
+          
+          {/* CAD Models Section */}
+          <div className="mb-8">
+            <h4 className="text-lg font-semibold text-white mb-4">CAD Models</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* EDIT CAPTION BELOW - CAD 1 */}
+              <div className="bg-gray-900/30 rounded-lg p-4 border border-gray-700/30">
+                <img 
+                  src="/automatic-t-shirt-folder/CAD 1.png" 
+                  alt="CAD Model - Front View" 
+                  className="w-full rounded-lg mb-3"
+                />
+                <p className="text-sm text-gray-400 text-center">
+                  {/* EDIT CAPTION: CAD 1 - Change the text below */}
+                  CAD Model - Iso View 1
+                </p>
+              </div>
+              {/* EDIT CAPTION BELOW - CAD 2 */}
+              <div className="bg-gray-900/30 rounded-lg p-4 border border-gray-700/30">
+                <img 
+                  src="/automatic-t-shirt-folder/CAD 2.png" 
+                  alt="CAD Model - Detailed View" 
+                  className="w-full rounded-lg mb-3"
+                />
+                <p className="text-sm text-gray-400 text-center">
+                  {/* EDIT CAPTION: CAD 2 - Change the text below */}
+                  CAD Model - Iso View 2
+                </p>
+              </div>
             </div>
-            <div>
-              <img 
-                src="/automatic-t-shirt-folder/CAD 2.png" 
-                alt="CAD Model 2" 
-                className="w-full rounded-lg"
-              />
+          </div>
+
+          {/* Physical Device Section */}
+          <div className="mb-8">
+            <h4 className="text-lg font-semibold text-white mb-4">Physical Device</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* EDIT CAPTION BELOW - IMG_4859 */}
+              <div className="bg-gray-900/30 rounded-lg p-4 border border-gray-700/30">
+                <img 
+                  src="/automatic-t-shirt-folder/IMG_4859.jpg" 
+                  alt="Physical Device - Assembly View" 
+                  className="w-full rounded-lg mb-3"
+                />
+                <p className="text-sm text-gray-400 text-center">
+                  {/* EDIT CAPTION: IMG_4859 - Change the text below */}
+                  Physical Device - Complete assembly 1
+                </p>
+              </div>
+              {/* EDIT CAPTION BELOW - IMG_4863 */}
+              <div className="bg-gray-900/30 rounded-lg p-4 border border-gray-700/30">
+                <img 
+                  src="/automatic-t-shirt-folder/IMG_4863.jpg" 
+                  alt="Physical Device - Close-up View" 
+                  className="w-full rounded-lg mb-3"
+                />
+                <p className="text-sm text-gray-400 text-center">
+                  {/* EDIT CAPTION: IMG_4863 - Change the text below */}
+                  Physical Device - Complete assembly 2                </p>
+              </div>
             </div>
-            <div>
-              <img 
-                src="/automatic-t-shirt-folder/IMG_4859.jpg" 
-                alt="Physical Device" 
-                className="w-full rounded-lg"
-              />
-            </div>
-            <div>
-              <img 
-                src="/automatic-t-shirt-folder/IMG_4863.jpg" 
-                alt="Physical Device" 
-                className="w-full rounded-lg"
-              />
-            </div>
-            <div>
-              <img 
-                src="/automatic-t-shirt-folder/Circuit Diagram.png" 
-                alt="Circuit Diagram" 
-                className="w-full rounded-lg"
-              />
-            </div>
-            <div>
-              <img 
-                src="/automatic-t-shirt-folder/State Transition Diagram.png" 
-                alt="State Transition Diagram" 
-                className="w-full rounded-lg"
-              />
-            </div>
-            <div>
-              <img 
-                src="/automatic-t-shirt-folder/Integrated Physical Device and Subsystems.png" 
-                alt="Integrated System" 
-                className="w-full rounded-lg"
-              />
+          </div>
+
+          {/* System Diagrams Section */}
+          <div className="mb-8">
+            <h4 className="text-lg font-semibold text-white mb-4">System Diagrams</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* EDIT CAPTION BELOW - Circuit Diagram */}
+              <div className="bg-gray-900/30 rounded-lg p-4 border border-gray-700/30">
+                <img 
+                  src="/automatic-t-shirt-folder/Circuit Diagram.png" 
+                  alt="Circuit Diagram" 
+                  className="w-full rounded-lg mb-3"
+                />
+                <p className="text-sm text-gray-400 text-center">
+                  {/* EDIT CAPTION: Circuit Diagram - Change the text below */}
+                  Circuit Diagram - Complete electrical schematic showing ESP32, motor drivers, sensors, and connections
+                </p>
+              </div>
+              {/* EDIT CAPTION BELOW - State Transition Diagram */}
+              <div className="bg-gray-900/30 rounded-lg p-4 border border-gray-700/30">
+                <img 
+                  src="/automatic-t-shirt-folder/State Transition Diagram.png" 
+                  alt="State Transition Diagram" 
+                  className="w-full rounded-lg mb-3"
+                />
+                <p className="text-sm text-gray-400 text-center">
+                  {/* EDIT CAPTION: State Transition Diagram - Change the text below */}
+                  State Transition Diagram - System state machine showing IDLE, RUN_SEQUENCE, and WAIT_RELEASE states
+                </p>
+              </div>
+              {/* EDIT CAPTION BELOW - Integrated System Architecture */}
+              <div className="bg-gray-900/30 rounded-lg p-4 border border-gray-700/30 md:col-span-2">
+                <img 
+                  src="/automatic-t-shirt-folder/Integrated Physical Device and Subsystems.png" 
+                  alt="Integrated System Architecture" 
+                  className="w-full rounded-lg mb-3"
+                />
+                <p className="text-sm text-gray-400 text-center">
+                  {/* EDIT CAPTION: Integrated System Architecture - Change the text below */}
+                  Integrated System Architecture - Overview of physical device integration with all subsystems and components
+                </p>
+              </div>
             </div>
           </div>
         </div>
