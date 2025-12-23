@@ -42,7 +42,7 @@ export default function Footer() {
         </li>
       </ul>
       <p className="mt-8 text-neutral-600 dark:text-neutral-300">
-        © {year} Christopher O. Lopez
+        © {year} Cy R. Khaldi
       </p>
     </footer>
   )

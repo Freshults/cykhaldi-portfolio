@@ -122,7 +122,7 @@ export default function Page() {
               <div className="font-semibold text-xl">University of California, Berkeley</div>
               {/* <div className="text-neutral-600 dark:text-neutral-400">Expected Graduation: May 2026</div> */}
               <div className="text-white">B.S. in Mechanical Engineering | Aug 2022 – May 2026</div>
-              <div className="text-white">Major GPA: 3.76/4.00</div>
+              <div className="text-white">Major GPA: 3.8/4.0</div>
               <div className="text-sm text-white">
                 Relevant Coursework: Mechatronics Design, Engineering Mechanics II, MEMS Design, Solid Mechanics, Heat Transfer, Fluid Mechanics, Electronics/IoT, Dynamic Systems and Feedback, Behavior of Engineering Materials
               </div>
@@ -144,6 +144,22 @@ export default function Page() {
           >
             <h2 className="text-2xl font-semibold mb-4 border-b-2 border-neutral-200 dark:border-neutral-700 pb-2">WORK EXPERIENCE</h2>
             <div className="space-y-6">
+              <motion.div
+                whileHover={{ scale: 1.02, x: 5 }}
+                className="p-4 rounded-lg hover:bg-black/20 dark:hover:bg-black/30 transition-colors"
+              >
+                <div className="flex justify-between items-start">
+                  <div className="font-semibold">Tesla | Incoming Mechanical & Thermal Design Engineer Intern</div>
+                  <div className="text-white text-sm">Jan 2026 – May 2026</div>
+                </div>
+                <div className="flex justify-between items-start">
+                  <div className="font-thin">Palo Alto, CA</div>
+                </div>
+                <ul className="list-disc list-inside mt-2 space-y-1 text-sm text-white">
+                  <li>Internship offer accepted; start date January 20, 2026</li>
+                </ul>
+              </motion.div>
+
               <motion.div
                 whileHover={{ scale: 1.02, x: 5 }}
                 className="p-4 rounded-lg hover:bg-black/20 dark:hover:bg-black/30 transition-colors"
@@ -190,7 +206,7 @@ export default function Page() {
               >
                 <div className="flex justify-between items-start">
                   <div className="font-semibold">Formula Electric at Berkeley | Autonomous Vehicles Hardware Engineer</div>
-                  <div className="text-white text-sm">Sept 2023 – Jan 2025</div>
+                  <div className="text-white text-sm">Sep 2023 – Jan 2025</div>
                 </div>
                 <div className="flex justify-between items-start">
                   <div className="font-thin">Berkeley, CA - Student Racing Team</div>
@@ -294,9 +310,19 @@ export default function Page() {
                 category="Automotive Engineering"
                 description="Hardware engineering for autonomous electric vehicle systems including Steer-by-Wire and Brake-by-Wire systems with BLDC motor actuation and LiDAR sensor integration."
                 technologies={["SOLIDWORKS", "ANSYS FEA", "BLDC Motors", "LiDAR", "Automotive Systems"]}
-                demoLink="#"
-                demoText="Engineering Project →"
+                demoLink="/projects/formula-electric-autonomous-vehicles"
+                demoText="Open Project →"
                 index={0}
+              />
+
+              <FeaturedProjectCard
+                title="Automatic T-shirt Folder"
+                category="Mechatronics Design"
+                description="An automated T-shirt folding system designed and built for ME 102B, featuring servo motors, DC motor control, ultrasonic sensors, and Arduino-based automation."
+                technologies={["Arduino", "ESP32", "Servo Motors", "DC Motors", "PID Control", "Mechatronics"]}
+                demoLink="/projects/automatic-t-shirt-folder"
+                demoText="Open Project →"
+                index={1}
               />
 
               <FeaturedProjectCard
@@ -306,7 +332,7 @@ export default function Page() {
                 technologies={["SOLIDWORKS", "Gas Springs", "Machining", "Sheet Metal", "Precision Design"]}
                 demoLink="/projects/pneumatic-seat-lift"
                 demoText="Open Project →"
-                index={1}
+                index={2}
               />
 
               <FeaturedProjectCard
@@ -316,7 +342,7 @@ export default function Page() {
                 technologies={["Electronics", "Sensor Integration", "Mobile App Development", "Mechanical Design", "CAD Modeling", "Prototyping", "Embedded Systems"]}
                 demoLink="/projects/anti-bike-theft-system"
                 demoText="Open Project →"
-                index={2}
+                index={3}
               />
               
               <motion.div 
