@@ -36,31 +36,73 @@ export function Navbar() {
           className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
         >
-          <div className="flex flex-row space-x-0 pr-10">
+          <div className="flex flex-row space-x-0 pr-10 relative">
             {Object.entries(navItems).map(([path, { name }]) => {
               const isActive = pathname === path || (path === '#featured-projects' && pathname === '/')
+              const isProjects = path === '#featured-projects'
               
               return (
-                <Link
-                  key={path}
-                  href={path}
-                  onClick={(e) => handleNavClick(e, path)}
-                  className={`transition-all flex align-middle relative py-1 px-2 m-1 ${
-                    isActive 
-                      ? 'text-neutral-500 dark:text-neutral-400 cursor-default select-none' 
-                      : 'hover:text-neutral-800 dark:hover:text-neutral-200 cursor-pointer'
-                  }`}
-                  style={{
-                    pointerEvents: 'auto'
-                  }}
-                  aria-current={isActive ? 'page' : undefined}
-                  tabIndex={isActive ? -1 : 0}
-                >
-                  {name}
-                  {isActive && (
-                    <span className="absolute -bottom-1 left-2 right-2 h-0.5 bg-neutral-400 dark:bg-neutral-500 rounded-full" />
+                <div key={path} className="relative">
+                  <Link
+                    href={path}
+                    onClick={(e) => handleNavClick(e, path)}
+                    className={`transition-all flex align-middle relative py-1 px-2 m-1 ${
+                      isActive 
+                        ? 'text-neutral-500 dark:text-neutral-400 cursor-default select-none' 
+                        : 'hover:text-neutral-800 dark:hover:text-neutral-200 cursor-pointer'
+                    }`}
+                    style={{
+                      pointerEvents: 'auto'
+                    }}
+                    aria-current={isActive ? 'page' : undefined}
+                    tabIndex={isActive ? -1 : 0}
+                  >
+                    {name}
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-2 right-2 h-0.5 bg-neutral-400 dark:bg-neutral-500 rounded-full" />
+                    )}
+                  </Link>
+                  
+                  {/* Arrow pointing to projects link */}
+                  {isProjects && pathname === '/' && (
+                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1 flex items-center pointer-events-none z-[100]" style={{ marginTop: '3px' }}>
+                      <style jsx>{`
+                        @keyframes pointArrow {
+                          0%, 100% {
+                            transform: translateX(3px) scaleX(-1);
+                          }
+                          50% {
+                            transform: translateX(-3px) scaleX(-1);
+                          }
+                        }
+                        .pointing-arrow {
+                          animation: pointArrow 1.5s ease-in-out infinite;
+                        }
+                      `}</style>
+                      {/* Horizontal Arrow pointing left towards projects link */}
+                      <svg 
+                        className="w-24 h-8 text-blue-600 dark:text-blue-500 pointing-arrow" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="3" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        viewBox="0 0 24 24"
+                      >
+                        {/* White outline */}
+                        <line x1="1" y1="13" x2="40" y2="13" stroke="white" strokeWidth="5"></line>
+                        <polyline points="25 2 41 13 25 22" stroke="white" strokeWidth="5"></polyline>
+                        {/* Blue arrow on top */}
+                        <line x1="1" y1="13" x2="40" y2="13" stroke="currentColor" strokeWidth="3"></line>
+                        <polyline points="25 2 41 13 25 22" stroke="currentColor" strokeWidth="3"></polyline>
+                      </svg>
+                      {/* Tooltip */}
+                      <div className="ml-2 whitespace-nowrap bg-blue-500 dark:bg-blue-600 text-white text-xs px-3 py-1.5 rounded-lg shadow-lg">
+                        Click here to view my projects
+                      </div>
+                    </div>
                   )}
-                </Link>
+                </div>
               )
             })}
           </div>

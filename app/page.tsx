@@ -344,19 +344,6 @@ export default function Page() {
                 demoText="Open Project →"
                 index={3}
               />
-              
-              <motion.div 
-                className="text-center pt-4"
-              >
-                <motion.a 
-                  href="/projects" 
-                  className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium text-lg"
-                  whileHover={{ scale: 1.05, x: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View All Projects by Category →
-                </motion.a>
-              </motion.div>
             </div>
           </motion.div>
         </StaggeredItem>

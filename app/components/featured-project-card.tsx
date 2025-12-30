@@ -58,7 +58,7 @@ export function FeaturedProjectCard({
             {demoText}
           </a>
         </div>
-        <p className="text-neutral-600 dark:text-neutral-400">{description}</p>
+        <p className="text-white">{description}</p>
         
         {keyFeatures.length > 0 && (
           <div className="space-y-2">
@@ -75,7 +75,7 @@ export function FeaturedProjectCard({
           {technologies.map((tech) => (
             <span
               key={tech}
-              className={`${categoryColor} text-xs px-2 py-1 rounded`}
+              className="bg-white/20 text-white text-xs px-2 py-1 rounded border border-white/30"
             >
               {tech}
             </span>
