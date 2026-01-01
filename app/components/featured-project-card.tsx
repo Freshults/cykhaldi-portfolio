@@ -47,18 +47,18 @@ export function FeaturedProjectCard({
       whileHover={{ scale: 1.02, x: 5 }}
     >
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">{title}</h3>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <h3 className="text-lg sm:text-xl font-semibold">{title}</h3>
           <a
             href={demoLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-sm"
+            className="text-blue-600 dark:text-blue-400 hover:underline font-medium text-sm whitespace-nowrap"
           >
             {demoText}
           </a>
         </div>
-        <p className="text-white">{description}</p>
+        <p className="text-white text-sm sm:text-base">{description}</p>
         
         {keyFeatures.length > 0 && (
           <div className="space-y-2">

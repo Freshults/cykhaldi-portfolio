@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 
 const navItems = {
@@ -15,11 +15,33 @@ const navItems = {
 
 export function Navbar() {
   const pathname = usePathname()
+  const router = useRouter()
 
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, targetPath: string) => {
     // Handle scroll to section for projects
     if (targetPath === '#featured-projects') {
       e.preventDefault()
+      
+      // If we're on a different page, navigate to home with hash
+      if (pathname !== '/') {
+        router.push('/#featured-projects')
+        // Use multiple timeouts to ensure scroll happens after page loads
+        setTimeout(() => {
+          const element = document.getElementById('featured-projects')
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+          }
+        }, 100)
+        setTimeout(() => {
+          const element = document.getElementById('featured-projects')
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+          }
+        }, 500)
+        return false
+      }
+      
+      // If we're already on home, just scroll
       const element = document.getElementById('featured-projects')
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
@@ -27,7 +49,7 @@ export function Navbar() {
       return false
     }
     return true
-  }, [pathname])
+  }, [pathname, router])
 
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
@@ -43,29 +65,29 @@ export function Navbar() {
               
               return (
                 <div key={path} className="relative">
-                  <Link
-                    href={path}
-                    onClick={(e) => handleNavClick(e, path)}
-                    className={`transition-all flex align-middle relative py-1 px-2 m-1 ${
-                      isActive 
-                        ? 'text-neutral-500 dark:text-neutral-400 cursor-default select-none' 
-                        : 'hover:text-neutral-800 dark:hover:text-neutral-200 cursor-pointer'
-                    }`}
-                    style={{
-                      pointerEvents: 'auto'
-                    }}
-                    aria-current={isActive ? 'page' : undefined}
-                    tabIndex={isActive ? -1 : 0}
-                  >
-                    {name}
-                    {isActive && (
-                      <span className="absolute -bottom-1 left-2 right-2 h-0.5 bg-neutral-400 dark:bg-neutral-500 rounded-full" />
-                    )}
-                  </Link>
+                <Link
+                  href={isProjects && pathname !== '/' ? '/#featured-projects' : path}
+                  onClick={(e) => handleNavClick(e, path)}
+                  className={`transition-all duration-200 flex align-middle relative py-1 px-2 m-1 ${
+                    isActive 
+                      ? 'text-neutral-500 dark:text-neutral-400 cursor-default select-none' 
+                      : 'text-neutral-400 dark:text-neutral-500 hover:text-white dark:hover:text-white hover:scale-110 cursor-pointer'
+                  }`}
+                  style={{
+                    pointerEvents: 'auto'
+                  }}
+                  aria-current={isActive ? 'page' : undefined}
+                  tabIndex={isActive ? -1 : 0}
+                >
+                  {name}
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-2 right-2 h-0.5 bg-neutral-400 dark:bg-neutral-500 rounded-full" />
+                  )}
+                </Link>
                   
-                  {/* Arrow pointing to projects link */}
+                  {/* Arrow pointing to projects link - hidden on mobile */}
                   {isProjects && pathname === '/' && (
-                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-1 flex items-center pointer-events-none z-[100]" style={{ marginTop: '3px' }}>
+                    <div className="hidden md:flex absolute left-full top-1/2 -translate-y-1/2 ml-1 items-center pointer-events-none z-[100]" style={{ marginTop: '3px' }}>
                       <style jsx>{`
                         @keyframes pointArrow {
                           0%, 100% {

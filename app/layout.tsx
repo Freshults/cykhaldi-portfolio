@@ -34,6 +34,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+  },
 }
 
 const cx = (...classes) => classes.filter(Boolean).join(' ')
@@ -54,10 +59,10 @@ export default function RootLayout({
       suppressHydrationWarning={true}
     >
       <body 
-        className="antialiased max-w-6xl mx-2 mt-8 lg:mx-auto"
+        className="antialiased max-w-6xl mx-2 sm:mx-4 mt-4 sm:mt-8 lg:mx-auto"
         suppressHydrationWarning={true}
       >
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-4">
+        <main className="flex-auto min-w-0 mt-4 sm:mt-6 flex flex-col px-2 sm:px-4">
           <Navbar />
           {children}
           <Footer />

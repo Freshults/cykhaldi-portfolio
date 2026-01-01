@@ -1,18 +1,52 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
 import ParticleBackground from './components/particles'
 import FluidMotion, { StaggeredMotion, StaggeredItem } from './components/fluid-motion'
 import { FeaturedProjectCard } from './components/featured-project-card'
 
 export default function Page() {
+  // Handle scrolling to featured projects when page loads with hash
+  useEffect(() => {
+    const handleHashScroll = () => {
+      if (window.location.hash === '#featured-projects') {
+        // Try multiple times to ensure it works after page loads
+        const scrollToSection = () => {
+          const element = document.getElementById('featured-projects')
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+          }
+        }
+        
+        // Immediate attempt
+        scrollToSection()
+        
+        // Delayed attempts to catch page load
+        setTimeout(scrollToSection, 100)
+        setTimeout(scrollToSection, 300)
+        setTimeout(scrollToSection, 500)
+        setTimeout(scrollToSection, 800)
+      }
+    }
+    
+    // Run on mount
+    handleHashScroll()
+    
+    // Also listen for hash changes
+    window.addEventListener('hashchange', handleHashScroll)
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashScroll)
+    }
+  }, [])
   return (
     <div className="relative min-h-screen">
       {/* Background Effects */}
       <ParticleBackground />
       
       {/* Main Content */}
-      <section className="relative z-20 space-y-8 p-2 md:p-4">
+      <section className="relative z-20 space-y-6 sm:space-y-8 p-2 sm:p-4">
         {/* Header */}
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 space-y-4">
             {/* Profile Picture */}
@@ -20,7 +54,7 @@ export default function Page() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="flex-shrink-0 relative w-48 h-60 md:w-56 md:h-72"
+              className="flex-shrink-0 relative w-40 h-52 sm:w-48 sm:h-60 md:w-56 md:h-72"
             >
               {/* Puzzle Piece Rendering */}
               <div className="absolute inset-0 grid grid-cols-16 grid-rows-20 gap-0.5 z-10">
@@ -89,7 +123,7 @@ export default function Page() {
             {/* Name and Contact Info */}
             <div className="space-y-4 flex-1">
               <motion.h1 
-                className="text-4xl font-bold tracking-tight"
+                className="text-3xl sm:text-4xl font-bold tracking-tight"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -102,8 +136,10 @@ export default function Page() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <div className="text-white space-y-1">
-                  <p>Berkeley, CA | cykhaldi@berkeley.edu | (424) 468-9165 | <a href="https://www.linkedin.com/in/cykhaldi" className="text-white hover:text-gray-300">linkedin.com/in/cykhaldi</a></p>
+                <div className="text-white space-y-1 text-sm sm:text-base">
+                  <p className="break-words">Berkeley, CA | cykhaldi@berkeley.edu</p>
+                  <p className="break-words">(424) 468-9165</p>
+                  <p><a href="https://www.linkedin.com/in/cykhaldi" className="text-white hover:text-gray-300 underline">linkedin.com/in/cykhaldi</a></p>
                 </div>
               </motion.div>
             </div>
@@ -117,7 +153,7 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="text-2xl font-semibold mb-4 border-b-2 border-neutral-200 dark:border-neutral-700 pb-2">EDUCATION & COURSEWORK</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4 border-b-2 border-neutral-200 dark:border-neutral-700 pb-2">EDUCATION & COURSEWORK</h2>
             <div className="space-y-2">
               <div className="font-semibold text-xl">University of California, Berkeley</div>
               {/* <div className="text-neutral-600 dark:text-neutral-400">Expected Graduation: May 2026</div> */}
@@ -142,20 +178,20 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="text-2xl font-semibold mb-4 border-b-2 border-neutral-200 dark:border-neutral-700 pb-2">WORK EXPERIENCE</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4 border-b-2 border-neutral-200 dark:border-neutral-700 pb-2">WORK EXPERIENCE</h2>
             <div className="space-y-6">
               <motion.div
                 whileHover={{ scale: 1.02, x: 5 }}
                 className="p-4 rounded-lg hover:bg-black/20 dark:hover:bg-black/30 transition-colors"
               >
-                <div className="flex justify-between items-start">
-                  <div className="font-semibold">Tesla | Incoming Mechanical & Thermal Design Engineer Intern</div>
-                  <div className="text-white text-sm">Jan 2026 – May 2026</div>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                  <div className="font-semibold text-base sm:text-lg">Tesla | Incoming Mechanical & Thermal Design Engineer Intern</div>
+                  <div className="text-white text-sm whitespace-nowrap">Jan 2026 – May 2026</div>
                 </div>
                 <div className="flex justify-between items-start">
-                  <div className="font-thin">Palo Alto, CA</div>
+                  <div className="font-thin text-sm sm:text-base">Palo Alto, CA</div>
                 </div>
-                <ul className="list-disc list-inside mt-2 space-y-1 text-sm text-white">
+                <ul className="list-disc list-inside mt-2 space-y-1 text-xs sm:text-sm text-white">
                   <li>Internship offer accepted; start date January 20, 2026</li>
                 </ul>
               </motion.div>
@@ -164,14 +200,14 @@ export default function Page() {
                 whileHover={{ scale: 1.02, x: 5 }}
                 className="p-4 rounded-lg hover:bg-black/20 dark:hover:bg-black/30 transition-colors"
               >
-                <div className="flex justify-between items-start">
-                  <div className="font-semibold">NVIDIA | Product Design Engineer - Thermal</div>
-                  <div className="text-white text-sm">May 2025 – Aug 2025</div>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                  <div className="font-semibold text-base sm:text-lg">NVIDIA | Product Design Engineer - Thermal</div>
+                  <div className="text-white text-sm whitespace-nowrap">May 2025 – Aug 2025</div>
                 </div>
                 <div className="flex justify-between items-start">
-                  <div className="font-thin">Santa Clara, CA</div>
+                  <div className="font-thin text-sm sm:text-base">Santa Clara, CA</div>
                 </div>
-                <ul className="list-disc list-inside mt-2 space-y-1 text-sm text-white">
+                <ul className="list-disc list-inside mt-2 space-y-1 text-xs sm:text-sm text-white">
                   <li>Pioneered & patented a novel liquid-cooled busbar architecture, advancing data center thermal management solutions</li>
                   <li>Performed steady state thermal simulations through ANSYS Icepak to predict hotspot formation and validate cooling performance at operating busbar temperatures up to 105 °C</li>
                   <li>Executed structural FEA on bent copper coolant pipes to determine appropriate number of support brackets counteracting spring-back and established minimum wall thicknesses to prevent collapse under operational loads</li>
@@ -184,14 +220,14 @@ export default function Page() {
                 whileHover={{ scale: 1.02, x: 5 }}
                 className="p-4 rounded-lg hover:bg-black/20 dark:hover:bg-black/30 transition-colors"
               >
-                <div className="flex justify-between items-start">
-                  <div className="font-semibold">Lawrence Berkeley National Laboratory | Mechanical/Thermal Design Research Intern</div>
-                  <div className="text-white text-sm">Jun 2024 – Nov 2024</div>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                  <div className="font-semibold text-base sm:text-lg">Lawrence Berkeley National Laboratory | Mechanical/Thermal Design Research Intern</div>
+                  <div className="text-white text-sm whitespace-nowrap">Jun 2024 – Nov 2024</div>
                 </div>
                 <div className="flex justify-between items-start">
-                  <div className="font-thin">Berkeley, CA - Thermal Energy Group</div>
+                  <div className="font-thin text-sm sm:text-base">Berkeley, CA - Thermal Energy Group</div>
                 </div>
-                <ul className="list-disc list-inside mt-2 space-y-1 text-sm text-white">
+                <ul className="list-disc list-inside mt-2 space-y-1 text-xs sm:text-sm text-white">
                   <li>Contributed to the fabrication and testing of a prototype non-volatile thermal switch device using current actuated shape memory alloy wires, achieving a bi-stable mechanism that reduces HVAC system energy consumption</li>
                   <li>Developed an aluminum–Teflon composite PCM enclosure with a precision pneumatic cylinder interface to manage volumetric expansion and minimize structural gaps during phase transitions</li>
                   <li>Integrated phase change material (PCM) within a thermal switch stack prototype to maximize utilization of ambient heating and cooling, resulting in up to 76% reduction in cooling loads for climate zones</li>
@@ -204,14 +240,14 @@ export default function Page() {
                 whileHover={{ scale: 1.02, x: 5 }}
                 className="p-4 rounded-lg hover:bg-black/20 dark:hover:bg-black/30 transition-colors"
               >
-                <div className="flex justify-between items-start">
-                  <div className="font-semibold">Formula Electric at Berkeley | Autonomous Vehicles Hardware Engineer</div>
-                  <div className="text-white text-sm">Sep 2023 – Jan 2025</div>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                  <div className="font-semibold text-base sm:text-lg">Formula Electric at Berkeley | Autonomous Vehicles Hardware Engineer</div>
+                  <div className="text-white text-sm whitespace-nowrap">Sep 2023 – Jan 2025</div>
                 </div>
                 <div className="flex justify-between items-start">
-                  <div className="font-thin">Berkeley, CA - Student Racing Team</div>
+                  <div className="font-thin text-sm sm:text-base">Berkeley, CA - Student Racing Team</div>
                 </div>
-                <ul className="list-disc list-inside mt-2 space-y-1 text-sm text-white">
+                <ul className="list-disc list-inside mt-2 space-y-1 text-xs sm:text-sm text-white">
                   <li>Optimized the Steer-by-Wire system of our second-generation vehicle by identifying key steering column criteria through extensive load and dynamic calculations using Solidworks FEA and Ansys Mechanical</li>
                   <li>Pioneered a BLDC motor + gearbox package actuating a parallel secondary steering rack that could handle at least 12 Nm of torque to actuate the steering wheel</li>
                   <li>Designed a break pedal actuator capable of pressure-regulated and low power emergency braking for autonomous vehicle safety systems</li>
@@ -231,17 +267,31 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="text-2xl font-semibold mb-6 border-b-2 border-neutral-200 dark:border-neutral-700 pb-2">SKILLS & INTERESTS</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-6 border-b-2 border-neutral-200 dark:border-neutral-700 pb-2">SKILLS & INTERESTS</h2>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
               
               <motion.div
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="p-6 rounded-lg border-2 border-cyan-400/30 bg-cyan-500/10 hover:bg-cyan-500/20 transition-all duration-300"
               >
-                <h3 className="text-lg font-bold text-cyan-400 mb-3">CAD & Simulation</h3>
+                <h3 className="text-lg font-bold text-cyan-400 mb-3">CAD Tools</h3>
                 <div className="flex flex-wrap gap-2">
-                  {["SOLIDWORKS", "Fusion 360", "Creo", "ANSYS Icepak", "SOLIDWORKS FEA", "CFD"].map((skill, index) => (
+                  {["SOLIDWORKS", "Fusion 360", "Creo", "Onshape", "AUTOCAD"].map((skill, index) => (
                     <span key={index} className="px-3 py-1 bg-cyan-400/20 text-cyan-300 text-sm rounded-full border border-cyan-400/30">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="p-6 rounded-lg border-2 border-purple-400/30 bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300"
+              >
+                <h3 className="text-lg font-bold text-purple-400 mb-3">Simulation Tools</h3>
+                <div className="flex flex-wrap gap-2">
+                  {["ANSYS Icepak", "ANSYS Mechanical", "ANSYS Fluent", "SOLIDWORKS FEA", "Simulink", "MATLAB"].map((skill, index) => (
+                    <span key={index} className="px-3 py-1 bg-purple-400/20 text-purple-300 text-sm rounded-full border border-purple-400/30">
                       {skill}
                     </span>
                   ))}
@@ -254,7 +304,7 @@ export default function Page() {
               >
                 <h3 className="text-lg font-bold text-green-400 mb-3">Programming</h3>
                 <div className="flex flex-wrap gap-2">
-                  {["Python", "MATLAB", "C/C++", "Excel", "Simulink"].map((skill, index) => (
+                  {["Python (matplotlib, numpy, pandas)", "MATLAB", "C/C++", "TypeScript", "JavaScript", "Next.js", "React", "Tailwind CSS", "Framer Motion"].map((skill, index) => (
                     <span key={index} className="px-3 py-1 bg-green-400/20 text-green-300 text-sm rounded-full border border-green-400/30">
                       {skill}
                     </span>
@@ -264,12 +314,12 @@ export default function Page() {
 
               <motion.div
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="p-6 rounded-lg border-2 border-purple-400/30 bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300"
+                className="p-6 rounded-lg border-2 border-orange-400/30 bg-orange-500/10 hover:bg-orange-500/20 transition-all duration-300"
               >
-                <h3 className="text-lg font-bold text-purple-400 mb-3">Manufacturing</h3>
+                <h3 className="text-lg font-bold text-orange-400 mb-3">Manufacturing</h3>
                 <div className="flex flex-wrap gap-2">
-                  {["Machining", "Subtractive Manufacturing", "3D-Printing"].map((skill, index) => (
-                    <span key={index} className="px-3 py-1 bg-purple-400/20 text-purple-300 text-sm rounded-full border border-purple-400/30">
+                  {["Machining (mill, lathe)", "Subtractive Manufacturing", "3D-Printing"].map((skill, index) => (
+                    <span key={index} className="px-3 py-1 bg-orange-400/20 text-orange-300 text-sm rounded-full border border-orange-400/30">
                       {skill}
                     </span>
                   ))}
@@ -303,7 +353,7 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 id="featured-projects" className="text-2xl font-semibold mb-4 border-b-2 border-neutral-200 dark:border-neutral-700 pb-2">FEATURED PROJECTS</h2>
+            <h2 id="featured-projects" className="text-xl sm:text-2xl font-semibold mb-4 border-b-2 border-neutral-200 dark:border-neutral-700 pb-2">FEATURED PROJECTS</h2>
             <div className="space-y-6">
               <FeaturedProjectCard
                 title="Formula Electric at Berkeley - Autonomous Vehicles"
